@@ -1,11 +1,257 @@
 <!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสำรวจและประเมินร้านชำ - GG Assessment</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/nonsawang/logo/ดีไซน์ที่ยังไม่ได้ตั้งชื่อ (1) (1).png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<html>
-   <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-      <base target="_top">
-   </head>
-   <body>
-      <iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;" src="https://script.google.com/macros/s/AKfycbwNxedR3Z6VisUoIa7ZwT5tTOCeEpY7gSSM_0vc5kgpCC5fz1ETaNDvTqcyCJXLxETA/exec"></iframe>
-   </body>
+        body {
+            font-family: 'Kanit', 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 30px 0;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .message {
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .info {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .info h3 {
+            color: #2d3748;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .info p {
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .countdown {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="https://cdn.jsdelivr.net/gh/nonsawang/logo/ดีไซน์ที่ยังไม่ได้ตั้งชื่อ (1) (1).png" alt="GG Assessment Logo">
+        
+        <h1>ระบบสำรวจและประเมินร้านชำ</h1>
+        <p class="subtitle">GG Assessment System</p>
+
+        <div class="loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <p class="message">กำลังเชื่อมต่อไปยังระบบ...</p>
+        <p class="countdown" id="countdown">3</p>
+
+        <a href="https://script.google.com/macros/s/AKfycbwNxedR3Z6VisUoIa7ZwT5tTOCeEpY7gSSM_0vc5kgpCC5fz1ETaNDvTqcyCJXLxETA/exec" 
+           class="btn" 
+           id="manualBtn" 
+           style="display: none;">
+            เข้าสู่ระบบ
+        </a>
+
+        <div class="info">
+            <h3>💡 หมายเหตุ</h3>
+            <p>• หากไม่สามารถเข้าใช้งานอัตโนมัติได้ กรุณาคลิกปุ่ม "เข้าสู่ระบบ" ด้านบน</p>
+            <p>• แนะนำให้ใช้ Chrome, Safari หรือ Edge เวอร์ชันล่าสุด</p>
+            <p>• กรุณา Allow Pop-ups สำหรับเว็บไซต์นี้</p>
+        </div>
+    </div>
+
+    <script>
+        // URL ของ Google Apps Script
+        const targetUrl = 'https://script.google.com/macros/s/AKfycbwNxedR3Z6VisUoIa7ZwT5tTOCeEpY7gSSM_0vc5kgpCC5fz1ETaNDvTqcyCJXLxETA/exec';
+        
+        // Countdown และ Auto-redirect
+        let timeLeft = 3;
+        const countdownEl = document.getElementById('countdown');
+        const manualBtn = document.getElementById('manualBtn');
+        const messageEl = document.querySelector('.message');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                
+                // พยายาม redirect
+                try {
+                    window.location.href = targetUrl;
+                } catch (e) {
+                    // ถ้า redirect ไม่ได้ แสดงปุ่ม
+                    messageEl.textContent = 'ไม่สามารถเปลี่ยนเส้นทางอัตโนมัติได้';
+                    countdownEl.style.display = 'none';
+                    manualBtn.style.display = 'inline-block';
+                }
+            }
+        }, 1000);
+
+        // แสดงปุ่มถ้า redirect ไม่ได้ภายใน 5 วินาที
+        setTimeout(() => {
+            if (window.location.href.includes('github.io') || window.location.href.includes('localhost')) {
+                clearInterval(countdown);
+                messageEl.textContent = 'กรุณาคลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบ';
+                countdownEl.style.display = 'none';
+                manualBtn.style.display = 'inline-block';
+            }
+        }, 5000);
+
+        // Fallback: แสดงปุ่มทันทีถ้าไม่สามารถ redirect ได้
+        window.addEventListener('error', () => {
+            clearInterval(countdown);
+            messageEl.textContent = 'กรุณาคลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบ';
+            countdownEl.style.display = 'none';
+            manualBtn.style.display = 'inline-block';
+        });
+    </script>
+</body>
 </html>
